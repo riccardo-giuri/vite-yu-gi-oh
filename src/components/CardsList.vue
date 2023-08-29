@@ -2,10 +2,12 @@
     import Axios from "axios";
     import Card from "./Card.vue";
     import { store, fetchData} from "../store";
+    import Filter from "./Filters.vue";
 
     export default {
         components: {
-            Card
+            Card,
+            Filter
         },
 
         data() {
@@ -25,6 +27,8 @@
 
 <template>
     <div class="container">
+        <Filter></Filter>
+
         <div class="row row-cols-5">
             <div class="col" v-for="cardData in store.cardList" :key="cardData.id">
                 <Card :singleCardData="cardData"></Card>

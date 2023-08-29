@@ -2,6 +2,7 @@
   import TheHeader from "./components/TheHeader.vue";
   import CardsList from "./components/CardsList.vue";
 
+
   export default {
     components: {
       TheHeader,

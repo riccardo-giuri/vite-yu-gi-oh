@@ -2,7 +2,9 @@ import { reactive } from "vue";
 import Axios from "axios";
 
 export const store = reactive({
-    cardList: []
+    cardList: [],
+    archetypesList: [],
+    filtertext: {}
 });
 
 export function fetchData(searchUrl) {
@@ -12,3 +14,11 @@ export function fetchData(searchUrl) {
         store.cardList = response.data.data;
     })
 }; 
+
+export function fetchArchetypes(searchUrl) {
+    const url = searchUrl;
+
+    Axios.get(url).then((response) => {
+        store.archetypesList = response.data;
+    })
+}
