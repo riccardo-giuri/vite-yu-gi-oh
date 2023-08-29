@@ -1,6 +1,7 @@
 <script>
     import Axios from "axios";
     import Card from "./Card.vue";
+    import { store, fetchData} from "../store";
 
     export default {
         components: {
@@ -9,22 +10,15 @@
 
         data() {
             return {
-                cardsList: []
+                store
             }
         },
 
         methods: {
-           fetchCards(searchUrl) {
-            const url = searchUrl ?? "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0";
-
-            Axios.get(url).then((response) => {
-                this.cardsList = response.data.data;
-            })
-           } 
         },
 
         mounted() {
-            this.fetchCards();
+            fetchData();
         }
     }
 </script>
@@ -32,7 +26,7 @@
 <template>
     <div class="container">
         <div class="row row-cols-5">
-            <div class="col" v-for="cardData in cardsList" :key="cardData.id">
+            <div class="col" v-for="cardData in store.cardList" :key="cardData.id">
                 <Card :singleCardData="cardData"></Card>
             </div>
         </div>
